@@ -1,176 +1,230 @@
-
 <!DOCTYPE html>
 <html>
+<title>Tap game</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style type="text/css">
+    .mySlides {
+        display: none;
+    }
 
-	<head>
-	
-		<!-- META -->
-		<meta charset = "utf-8">
-		<meta name = "viewport" content = "width=device-width, minimum-scale=1, maximum-scale=1">
-		<meta name = "apple-mobile-web-app-capable" content = "yes" /> 
-		
-		<style type="text/css">
-
-		         body {
-			    background-color: red;
-			    margin: 0px;
-			    padding: 0px;
-		     	    border: 0px;
-                         }
+    body {
+        background-color: rgb(0, 132, 255);
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+    }
 
 
-			.fluidHeight {
-				position: relative;
-				width: 100%;
-				height: 300px;
-			}
+    .fluidHeight {
+        position: relative;
+        width: 100%;
+        height: 300px;
+    }
 
-			#collection {
-			   padding-top: 30px;
-			   background-color: red;
-			   text-align:center;
-			}
+    #collection {
+        padding-top: 30px;
+        background-color: rgb(255, 0, 191);
+        text-align: center;
+    }
 
-			#exitButton {
-			}
+    #exitButton {}
 
-			button {
-			   width: 33%;
-			   height: 60px;
-			}
 
-			.left {
-			   float: left;
-			}
 
-			.right {
-			   float: right;
-			}
-			
-			/* 
+    .left {
+        float: left;
+    }
+
+    .right {
+        float: right;
+    }
+
+    /* 
 			 * below 900px, switch to percentage based responsive height.
 			 * padding of 33.333% is calculated by using the 
 			 * image ratio 300px/900px = .333 * 100% = 33.333% 
 			 */
-			@media screen and (max-width: 900px) {
-				
-				.fluidHeight {
-					height: 0;
-					padding: 0 0 33.333% 0;
-				}
-				
-			}
-			
-			.sliderContainer {
-				position: absolute;
-				padding-top: 20px;
-				width: 100%;
-				height: 100%;
-			}
+    @media screen and (max-width: 900px) {
 
-			.iosSlider {
-				width: 100%;
-				height: 100%;
-				background: #aaa;
-			}
-			
-			.iosSlider .slider {
-				width: 100%;
-				height: 100%;
-			}
-			
-			.iosSlider .slider .item {
-				position: relative;
-				top: 0;
-				left: 0;
-				max-width: 900px;
-				width: 100%;
-				height: 100%;
-			}
-			
-			.iosSlider .slider .item img {
-				position: relative;
-				top: 0;
-				left: 0;
-				max-width: 900px;
-				width: 100%;
-				margin: 0 auto;
-			}
-		</style>
-		
-		<!-- jQuery library -->
-		<script type="text/javascript" src = "jquery-1.4.min.js"></script>
-		<script type="text/javascript" src = "jquery.easing-1.3.js"></script>
-	        <script type="text/javascript" src="http://galaxy.signage.me/Code/js/remoteTouch.js"></script>
+        .fluidHeight {
+            height: 0;
+            padding: 0 0 33.333% 0;
+        }
 
-		
-		<!-- iosSlider plugin -->
-		<script src = "jquery.iosslider.js"></script>
-	
-		<script type="text/javascript">
-			$(document).ready(function() {
+    }
 
-				sendRemoteTouch("ev_welcome");
-				
-   				$("#btn1").click( function () { sendRemoteTouch("ev_t1"); return false });
-       				$("#btn2").click( function () { sendRemoteTouch("ev_t2"); return false });
-      				$("#btn3").click( function () { sendRemoteTouch("ev_t3"); return false });
-      				$("#btn4").click( function () { sendRemoteTouch("ev_t4"); return false });
+    .sliderContainer {
+        position: absolute;
+        padding-top: 20px;
+        width: 100%;
+        height: 100%;
+    }
 
-   				$("#previous").click( function () { sendRemoteTouch("prev"); return false });
-       				$("#next").click( function ()     { sendRemoteTouch("next"); return false });
+    .iosSlider {
+        width: 100%;
+        height: 100%;
+        background: #aaa;
+    }
+
+    .iosSlider .slider {
+        width: 100%;
+        height: 100%;
+    }
+
+    .iosSlider .slider .item {
+        position: relative;
+        top: 0;
+        left: 0;
+        max-width: 900px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .iosSlider .slider .item img {
+        position: relative;
+        top: 0;
+        left: 0;
+        max-width: 900px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .press {
+        box-shadow: inset 0px 1px 0px 0px #f29c93;
+        background: linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
+        background-color: #fe1a00;
+        border-radius: 42px;
+        border: 4px solid #d83526;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Times New Roman;
+        font-size: 28px;
+        font-weight: bold;
+        padding: 27px 10px;
+        text-decoration: none;
+    }
+
+    .press:hover {
+        background: linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
+        background-color: #ce0100;
+    }
+
+    .press:active {
+        position: relative;
+        top: 1px;
+    }
+</style>
+
+<body>
+
+    <h2 class="w3-center">Scotwell</h2>
+
+    <div class="w3-content w3-display-container">
+        <img class="mySlides" src="http://www.scotwell.com/wp-content/uploads/2018/10/1-1P92Q43140E5.jpg"
+            style="width:100%">
+        <img class="mySlides" src="http://www.scotwell.com/wp-content/uploads/2017/12/1-1FR41432020-L.jpg"
+            style="width:100%">
+        <img class="mySlides" src="http://www.scotwell.com/wp-content/uploads/2017/12/1-1FQ5104RV12.jpg"
+            style="width:100%">
+        <img class="mySlides" src="http://www.scotwell.com/wp-content/uploads/2017/12/Front-Tuning-Magic1.jpg"
+            style="width:100%">
+
+        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+    </div>
+
+    <script>
+        var slideIndex = 1;
+        showDivs(slideIndex);
+
+        function plusDivs(n) {
+            showDivs(slideIndex += n);
+        }
+
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            if (n > x.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = x.length
+            }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex - 1].style.display = "block";
+        }
+    </script>
+
+    <script type="text/javascript">
+        //signage player details
+        var SID = "19";
+        var EMAIL = "support@scotwell";
+        var PASSWORD = "Scotwell123";
+        $(document).ready(function () {
+            addnum.addEventListener("click", function () {
+            sendCommand(
+                "galaxy.signage.me",
+                EMAIL,
+                PASSWORD,
+                SID,
+                "addnum_rec",
+            );
+        });
+            sendRemoteTouch("ev_welcome");
+
+            $("#btn1").click(function () {
+                sendRemoteTouch("ev_t1");
+                return false
+            });
+            $("#btn2").click(function () {
+                sendRemoteTouch("ev_t2");
+                return false
+            });
+            $("#btn3").click(function () {
+                sendRemoteTouch("ev_t3");
+                return false
+            });
+            $("#btn4").click(function () {
+                sendRemoteTouch("ev_t4");
+                return false
+            });
+
+            $("#previous").click(function () {
+                sendRemoteTouch("prev");
+                return false
+            });
+            $("#next").click(function () {
+                sendRemoteTouch("next");
+                return false
+            });
 
 
-  				$("#exitButton").click( function () {
-				   sendRemoteTouch("exitButton");
-				   alert('Thank you for using RemoteTouch');
-				   window.location="http://www.scotwell.com/";
-				   return false
-				 });
+            $("#exitButton").click(function () {
+                sendRemoteTouch("exitButton");
+                alert('Thank you for using RemoteTouch');
+                window.location = "http://www.scotwell.com/";
+                return false
+            });
 
 
-				$('.iosSlider').iosSlider({
-					snapToChildren: true,
-					desktopClickDrag: true,
-					infiniteSlider: true,
-					snapSlideCenter: true
-				});
-				
-			});
-		</script>
-		
-		<title>Ex #12: Image Slides</title>
-		
-	</head>
-	
-	<body>
-		<div class = 'fluidHeight'>
-			<div class = 'sliderContainer'>
-				<div class = 'iosSlider'>
-					<div class = 'slider'>
-						<div id="btn1" class = 'item'>
-							<img src = 'http://www.scotwell.com/wp-content/uploads/2017/12/1-1FR41432020-L.jpg' />
-						</div>
-						<div id="btn2" class = 'item'>
-							<img src = 'http://www.scotwell.com/wp-content/uploads/2018/10/1-1P92Q43140E5.jpg' />
-						</div>
-						<div id="btn3" class = 'item'>
-							<img src = 'http://www.scotwell.com/wp-content/uploads/2017/12/1-1FQ5104RV12.jpg' />
-						</div>
-						<div id="btn4" class = 'item'>
-							<img src = 'http://www.scotwell.com/wp-content/uploads/2017/12/Front-Tuning-Magic1.jpg' />
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="collection">
-		<button id="previous" class="left">previous</button>
-		<button id="exitButton" class="center">exit</button>
-		<button id="next" class="right">next</button>
-		</div>
+            $('.iosSlider').iosSlider({
+                snapToChildren: true,
+                desktopClickDrag: true,
+                infiniteSlider: true,
+                snapSlideCenter: true
+            });
 
-			
-	</body>
+        });
+    </script>
+    <div id="collection">
+        <button id="addnum" class="press">Press</button>
+        <button id="exitButton" class="center">exit</button>
+        <button id="addnum" class="press">Press</button>
+    </div>
+</body>
 
 </html>
