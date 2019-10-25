@@ -17,55 +17,7 @@
 </head>
 
 
-<!-- javascript -->
-<script type="text/javascript">
-    //signage player details
-    var SID = "19";
-    var EMAIL = "support@scotwell";
-    var PASSWORD = "Scotwell123";
 
-
-    $(document).ready(function () {
-
-        exitButton.addEventListener("click", function () {
-
-            alert('Thank you for playing');
-            window.location = "http://www.scotwell.com/";
-            return false
-        });
-
-
-        //period control-it will not change timer
-        btnaddnum.addEventListener("click", function () {
-
-            sendCommand(
-                "galaxy.signage.me",
-                EMAIL,
-                PASSWORD,
-                SID,
-                "addnum_rec",
-                1
-            );
-
-        });
-        btnhalftime.addEventListener("click", function () {
-
-            sendCommand(
-                "galaxy.signage.me",
-                EMAIL,
-                PASSWORD,
-                SID,
-                "halftime_rec",
-                "HALFTIME"
-            );
-        });
-
-
-        //clicks will sent form data to signage player
-        //format : server,email,password,station id,receive event name,return value
-
-    });
-</script>
 
 <!-- table css editor -->
 <style type="text/css">
@@ -106,7 +58,50 @@
         <title>Controller</title>
         <h1>Scotwell</h1>
 
+        <!-- javascript -->
+        <script type="text/javascript">
+            //signage player details
+            var SID = "19";
+            var EMAIL = "support@scotwell";
+            var PASSWORD = "Scotwell123";
+            $(document).ready(function () {
 
+                exitButton.addEventListener("click", function () {
+
+                    alert('Thank you for playing');
+                    window.location = "http://www.scotwell.com/";
+                    return false
+                });
+
+
+                //period control-it will not change timer
+                btnaddnum.addEventListener("click", function () {
+
+                    sendCommand(
+                        "galaxy.signage.me",
+                        EMAIL,
+                        PASSWORD,
+                        SID,
+                        "addnum_rec",
+                        1
+                    );
+
+                });
+                btnhalftime.addEventListener("click", function () {
+
+                    sendCommand(
+                        "galaxy.signage.me",
+                        EMAIL,
+                        PASSWORD,
+                        SID,
+                        "halftime_rec",
+                        "HALFTIME"
+                    );
+                });
+
+
+            });
+        </script>
 
         <div class="w3-content w3-display-container">
             <img class="mySlides" src="http://www.scotwell.com/wp-content/uploads/2018/10/1-1P92Q43140E5.jpg"
