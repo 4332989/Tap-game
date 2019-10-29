@@ -1,0 +1,153 @@
+<!-- 
+    author: GOH
+    version: x.xx ver.P
+    VCS: git    
+    modified: -
+-->
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<head>
+    <!-- library -->
+    <script type="text/javascript" src="https://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="http://signage.me/demo/sendCommand.js"></script>
+    <script type="text/javascript" src="http://galaxy.signage.me/Code/js/stations.js"></script>
+
+</head>
+
+<!-- table css editor -->
+<style type="text/css">
+    .mySlides {
+        display: none;
+    }
+
+    .press {
+        box-shadow: inset 0px 1px 0px 0px #f29c93;
+        background: linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
+        background-color: #fe1a00;
+        border-radius: 42px;
+        border: 4px solid #d83526;
+        display: inline-block;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: Times New Roman;
+        font-size: 28px;
+        font-weight: bold;
+        padding: 27px 10px;
+        text-decoration: none;
+    }
+
+    .press:hover {
+        background: linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
+        background-color: #ce0100;
+    }
+
+    .press:active {
+        position: relative;
+        top: 1px;
+    }
+</style>
+
+<div style="color:rgb(4, 155, 79);max-width:100%;text-align:center;margin:auto;">
+
+    <body>
+
+        <!-- javascript -->
+        <script type="text/javascript">
+            //signage player details
+            var SID = "19";
+            var EMAIL = "support@scotwell";
+            var PASSWORD = "Scotwell123";
+            $(document).ready(function () {
+
+                exitButton.addEventListener("click", function () {
+
+                    alert('Thank you for playing');
+                    window.location = "http://www.scotwell.com/";
+                    return false
+                });
+                //period control-it will not change timer
+                btnaddnum.addEventListener("click", function () {
+                    sendCommand(
+                        "galaxy.signage.me",
+                        EMAIL,
+                        PASSWORD,
+                        SID,
+                        "addnum_rec",
+                        1
+                    );
+
+                });
+                btnhalftime.addEventListener("click", function () {
+                    sendCommand(
+                        "galaxy.signage.me",
+                        EMAIL,
+                        PASSWORD,
+                        SID,
+                        "halftime_rec",
+                        "HALFTIME"
+                    );
+                });
+
+
+            });
+        </script>
+        <title>Controller</title>
+        <h1>Scotwell</h1>
+        <div class="w3-content w3-display-container">
+            <img class="mySlides" src="http://www.scotwell.com/wp-content/uploads/2018/10/1-1P92Q43140E5.jpg"
+                style="width:100%">
+            <img class="mySlides" src="http://www.scotwell.com/wp-content/uploads/2017/12/1-1FR41432020-L.jpg"
+                style="width:100%">
+            <img class="mySlides" src="http://www.scotwell.com/wp-content/uploads/2017/12/1-1FQ5104RV12.jpg"
+                style="width:100%">
+            <img class="mySlides" src="http://www.scotwell.com/wp-content/uploads/2017/12/Front-Tuning-Magic1.jpg"
+                style="width:100%">
+
+            <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+        </div>
+
+        <script>
+            var slideIndex = 1;
+            showDivs(slideIndex);
+
+            function plusDivs(n) {
+                showDivs(slideIndex += n);
+            }
+
+            function showDivs(n) {
+                var i;
+                var x = document.getElementsByClassName("mySlides");
+                if (n > x.length) {
+                    slideIndex = 1
+                }
+                if (n < 1) {
+                    slideIndex = x.length
+                }
+                for (i = 0; i < x.length; i++) {
+                    x[i].style.display = "none";
+                }
+                x[slideIndex - 1].style.display = "block";
+            }
+        </script>
+
+        <fieldset>
+            <button id="btnaddnum" class="press">Press</button><br /><br />
+            <button id="exitButton">Exit</button>
+        </fieldset>
+
+
+
+
+
+
+
+
+
+
+    </body>
+</div>
+
+</html>
