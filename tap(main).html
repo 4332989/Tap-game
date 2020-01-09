@@ -1,0 +1,105 @@
+<!-- 
+    author: GOH
+    version: x.xx ver.P
+    VCS: git    
+    modified: -
+-->
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<head>
+    <!-- library -->
+    <script type="text/javascript" src="https://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="http://signage.me/demo/sendCommand.js"></script>
+    <script type="text/javascript" src="http://galaxy.signage.me/Code/js/stations.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<!-- table css editor -->
+<style type="text/css">
+
+</style>
+
+<div style="color:rgb(4, 155, 79);max-width:100%;text-align:center;margin:auto;">
+
+    <body onload="reset()">
+        <!-- javascript -->
+        <script type="text/javascript">
+            var data = 0;
+
+            function reset() {
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else { // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+
+                    }
+                }
+                xmlhttp.open("GET", "writeToFile.php?reset=" + 1, true);
+                xmlhttp.send();
+                console.log("reset");
+            };
+            $(document).ready(function () {
+
+                window.setInterval(function () {
+                    listenToPage1();
+                }, 100);
+
+                function listenToPage1() {
+                    $.get("http://code/readFromFile.php", function (data) {
+                        document.getElementById("num_disp").innerHTML = data;
+                        win(data);
+
+                    });
+                };
+            });
+
+            function win(data) {
+                if (data >= 10) {
+                    document.getElementById("num_disp").innerHTML = "WE DID IT!";
+                    //giveaway();
+
+                } else {
+                    size_change(data);
+                };
+            };
+
+            function size_change(data) {
+                resize = data * 50;
+                var img2 = document.getElementById("img2");
+                img2.width = resize;
+                img2.height = resize;
+            };
+
+            function giveaway() {
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else { // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+
+                    }
+                }
+                xmlhttp.open("GET", "writeToFile.php?giveaway=" + 1, true);
+                xmlhttp.send();
+                console.log("Give");
+            };
+        </script>
+        <title>Controller</title>
+        <h1>Scotwell Main</h1>
+        <h2>Get to 10 taps</h2>
+        <span id="num_disp">0</span>
+        <div>
+            <img id="img2" src="001.png" width="10" height="20"></div>
+    </body>
+</div>
+
+</html>
